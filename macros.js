@@ -8,6 +8,9 @@ function stripMacro() {
 
 const processors = {
   cssref: stripMacro,
+  deprecated_header: stripMacro,
+  seecompattable: stripMacro,
+  "non-standard_header": stripMacro,
   cssxref: cssxrefProcessor,
   embedinteractiveexample: embedInteractiveExampleProcessor,
   experimental_inline: experimentalInlineProcessor,
