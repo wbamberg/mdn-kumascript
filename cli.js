@@ -1,5 +1,5 @@
-import { processLine } from "./index.js";
+import { processMacros } from "./index.js";
 
-const output = processLine(process.argv[2], { "page-type": process.argv[3] });
+const output = processMacros(process.argv[2], { "page-type": process.argv[3] });
 console.log(output.markup);
 console.log(output.frontMatter);
