@@ -1,22 +1,6 @@
+import { processors } from "./processors.js";
+
 const macroRegex = RegExp("{{.*?}}", "g");
-
-import { executeMacro as cssxrefProcessor } from "./macros/cssxref.js";
-import { executeMacro as embedInteractiveExampleProcessor } from "./macros/embedinteractiveexample.js";
-import { executeMacro as experimentalInlineProcessor } from "./macros/experimental_inline.js";
-
-function stripMacro() {
-  return "";
-}
-
-const processors = {
-  cssref: stripMacro,
-  deprecated_header: stripMacro,
-  seecompattable: stripMacro,
-  "non-standard_header": stripMacro,
-  cssxref: cssxrefProcessor,
-  embedinteractiveexample: embedInteractiveExampleProcessor,
-  experimental_inline: experimentalInlineProcessor,
-};
 
 const macroParser =
   /{{(?<macroname>[a-zA-Z\-_0-9\ ]*)(?<macroargs>\(.*?\))? ?}}/;

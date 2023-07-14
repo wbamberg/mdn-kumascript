@@ -1,10 +1,13 @@
 {
-	"name": "mdn-kumascript",
-	"version": "0.0.1",
-	"type": "module",
-	"main": "index.js",
-	"scripts": {
-		"process": "node ./cli.js"
-	},
-	"dependencies": {}
+  "name": "mdn-kumascript",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "process": "node ./cli.js",
+    "test": "mocha -- test/**/*.js"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  }
 }
