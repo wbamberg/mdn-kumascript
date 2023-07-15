@@ -23,6 +23,8 @@ export function executeMacro(args, frontMatter) {
 
   if (!args[1]) {
     // Append parameter brackets to CSS functions
+
+    // note that this is completely wrong!!
     if (
       frontMatter["page-type"] === "css-function" &&
       !displayName.endsWith("()")
