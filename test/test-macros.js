@@ -15,10 +15,27 @@ const expected = {
     fragment:
       '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border#syntax"><code>border</code></a>',
   },
+  deprecated_inline:
+    '<abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites."><span class="visually-hidden">Deprecated</span></abbr>',
   experimental_inline:
     '<abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future."><span class="visually-hidden">Experimental</span></abbr>',
+  glossary: {
+    "one-argument":
+      '<a href="https://developer.mozilla.org/en-US/docs/Glossary/Fingerprinting">Fingerprinting</a>',
+    "custom-display-name":
+      '<a href="https://developer.mozilla.org/en-US/docs/Glossary/Fingerprinting">another name</a>',
+  },
+  htmlelement: {
+    "one-argument":
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a>',
+    "custom-display-name":
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span">The span element</a>',
+    fragment:
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary#examples"><code>&lt;summary&gt;</code></a>',
+  },
   "non-standard_inline":
     '<abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using."><span class="visually-hidden">Non-standard</span></abbr>',
+  optional_inline: '<span class="badge inline optional">Optional</span>',
 };
 
 describe("Macro unit tests", () => {
@@ -69,6 +86,14 @@ describe("Macro unit tests", () => {
     it("strips macro", () =>
       assert.equal(processors["deprecated_header"](), ""));
   });
+  // deprecated_inline
+  describe("deprecated_inline", () => {
+    it("generates markup", () =>
+      assert.equal(
+        processors["deprecated_inline"](),
+        expected["deprecated_inline"]
+      ));
+  });
   // embedinteractiveexample
   describe("embedinteractiveexample", () => {
     it("strips macro, appends to front matter", () => {
@@ -92,6 +117,37 @@ describe("Macro unit tests", () => {
         expected["experimental_inline"]
       ));
   });
+  // glossary
+  describe("glossary", () => {
+    it("works with 1 argument", () =>
+      assert.equal(
+        processors["glossary"](["Fingerprinting"]),
+        expected["glossary"]["one-argument"]
+      ));
+    it("supports custom display names", () =>
+      assert.equal(
+        processors["glossary"](["Fingerprinting", "another name"]),
+        expected["glossary"]["custom-display-name"]
+      ));
+  });
+  // htmlelement
+  describe("htmlelement", () => {
+    it("works with 1 argument", () =>
+      assert.equal(
+        processors["htmlelement"](["div"]),
+        expected["htmlelement"]["one-argument"]
+      ));
+    it("supports custom display names", () =>
+      assert.equal(
+        processors["htmlelement"](["span", "The span element"]),
+        expected["htmlelement"]["custom-display-name"]
+      ));
+    it("supports fragments", () =>
+      assert.equal(
+        processors["htmlelement"](["summary", "", "#examples"]),
+        expected["htmlelement"]["fragment"]
+      ));
+  });
   // non-standard_header
   describe("non-standard_header", () => {
     it("strips macro", () =>
@@ -103,6 +159,14 @@ describe("Macro unit tests", () => {
       assert.equal(
         processors["non-standard_inline"](),
         expected["non-standard_inline"]
+      ));
+  });
+  // optional_inline
+  describe("optional_inline", () => {
+    it("generates markup", () =>
+      assert.equal(
+        processors["optional_inline"](),
+        expected["optional_inline"]
       ));
   });
   // seecompattable

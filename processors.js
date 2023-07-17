@@ -1,7 +1,11 @@
 import { executeMacro as cssxrefProcessor } from "./macros/cssxref.js";
+import { executeMacro as deprecatedInlineProcessor } from "./macros/deprecated_inline.js";
 import { executeMacro as embedInteractiveExampleProcessor } from "./macros/embedinteractiveexample.js";
 import { executeMacro as experimentalInlineProcessor } from "./macros/experimental_inline.js";
+import { executeMacro as glossaryProcessor } from "./macros/glossary.js";
+import { executeMacro as htmlelementProcessor } from "./macros/htmlelement.js";
 import { executeMacro as nonStandardInlineProcessor } from "./macros/non-standard_inline.js";
+import { executeMacro as optionalInlineProcessor } from "./macros/optional_inline.js";
 
 function stripMacro() {
   return "";
@@ -14,10 +18,14 @@ export const processors = {
   cssxref: cssxrefProcessor,
   csssyntax: stripMacro,
   deprecated_header: stripMacro,
+  deprecated_inline: deprecatedInlineProcessor,
   embedinteractiveexample: embedInteractiveExampleProcessor,
   experimental_inline: experimentalInlineProcessor,
+  glossary: glossaryProcessor,
+  htmlelement: htmlelementProcessor,
   "non-standard_header": stripMacro,
   "non-standard_inline": nonStandardInlineProcessor,
+  optional_inline: optionalInlineProcessor,
   seecompattable: stripMacro,
   specifications: stripMacro,
 };
