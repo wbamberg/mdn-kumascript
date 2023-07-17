@@ -1,5 +1,9 @@
-import { processMacros } from "./index.js";
+import { env } from "process";
+import { render } from "./dist/render.js";
 
-const output = processMacros(process.argv[2], { "page-type": process.argv[3] });
-console.log(output.markup);
-console.log(output.frontMatter);
+const input = process.argv[2];
+const environment = { frontMatter: {} };
+
+const output = await render(input, environment);
+console.log(output);
+console.log(environment.frontMatter);

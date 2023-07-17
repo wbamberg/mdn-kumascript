@@ -8,12 +8,16 @@ function stripMacro() {
 }
 
 export const processors = {
+  compat: stripMacro,
+  cssinfo: stripMacro,
   cssref: stripMacro,
-  deprecated_header: stripMacro,
-  "non-standard_header": stripMacro,
-  seecompattable: stripMacro,
   cssxref: cssxrefProcessor,
+  csssyntax: stripMacro,
+  deprecated_header: stripMacro,
   embedinteractiveexample: embedInteractiveExampleProcessor,
   experimental_inline: experimentalInlineProcessor,
+  "non-standard_header": stripMacro,
   "non-standard_inline": nonStandardInlineProcessor,
+  seecompattable: stripMacro,
+  specifications: stripMacro,
 };
