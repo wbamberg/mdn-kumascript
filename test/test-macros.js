@@ -47,6 +47,16 @@ const expected = {
     fragment:
       '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary#examples"><code>&lt;summary&gt;</code></a>',
   },
+  httpheader: {
+    "one-argument":
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/RTT"><code>RTT</code></a>',
+    "custom-display-name":
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/RTT"><code>My text</code></a>',
+    fragment:
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/RTT#examples"><code>My text.examples</code></a>',
+    nocode:
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/RTT">RTT</a>',
+  },
   "non-standard_inline":
     '<abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using."><span class="visually-hidden">Non-standard</span></abbr>',
   optional_inline: '<span class="badge inline optional">Optional</span>',
@@ -205,6 +215,29 @@ describe("Macro unit tests", () => {
       assert.equal(
         processors["htmlelement"](["summary", "", "#examples"]),
         expected["htmlelement"]["fragment"]
+      ));
+  });
+  // httpheader
+  describe("httpheader", () => {
+    it("works with 1 argument", () =>
+      assert.equal(
+        processors["httpheader"](["RTT"]),
+        expected["httpheader"]["one-argument"]
+      ));
+    it("supports custom display names", () =>
+      assert.equal(
+        processors["httpheader"](["RTT", "My text"]),
+        expected["httpheader"]["custom-display-name"]
+      ));
+    it("supports fragments", () =>
+      assert.equal(
+        processors["httpheader"](["RTT", "My text", "examples"]),
+        expected["httpheader"]["fragment"]
+      ));
+    it("can suppress code formatting", () =>
+      assert.equal(
+        processors["httpheader"](["RTT", "", "", "nocode"]),
+        expected["httpheader"]["nocode"]
       ));
   });
   // non-standard_header

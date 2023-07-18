@@ -5,6 +5,7 @@ import { executeMacro as embedInteractiveExampleProcessor } from "./macros/embed
 import { executeMacro as experimentalInlineProcessor } from "./macros/experimental_inline.js";
 import { executeMacro as glossaryProcessor } from "./macros/glossary.js";
 import { executeMacro as htmlelementProcessor } from "./macros/htmlelement.js";
+import { executeMacro as httpheaderProcessor } from "./macros/httpheader.js";
 import { executeMacro as nonStandardInlineProcessor } from "./macros/non-standard_inline.js";
 import { executeMacro as optionalInlineProcessor } from "./macros/optional_inline.js";
 import { executeMacro as rfcProcessor } from "./macros/rfc.js";
@@ -28,6 +29,7 @@ export const processors = {
   experimental_inline: experimentalInlineProcessor,
   glossary: glossaryProcessor,
   htmlelement: htmlelementProcessor,
+  httpheader: httpheaderProcessor,
   "non-standard_header": stripMacro,
   "non-standard_inline": nonStandardInlineProcessor,
   optional_inline: optionalInlineProcessor,
