@@ -50,6 +50,14 @@ const expected = {
   "non-standard_inline":
     '<abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using."><span class="visually-hidden">Non-standard</span></abbr>',
   optional_inline: '<span class="badge inline optional">Optional</span>',
+  rfc: {
+    "one-argument":
+      '<a href="https://datatracker.ietf.org/doc/html/rfc1234">RFC 1234</a>',
+    "additional-link-text":
+      '<a href="https://datatracker.ietf.org/doc/html/rfc1234">RFC 1234: my extra stuff</a>',
+    "link-to-section":
+      '<a href="https://datatracker.ietf.org/doc/html/rfc1950#section-4">RFC 1950, section 4: my extra stuff</a>',
+  },
   svgattr:
     '<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/end"><code>end</code></a>',
   svgelement:
@@ -218,6 +226,21 @@ describe("Macro unit tests", () => {
       assert.equal(
         processors["optional_inline"](),
         expected["optional_inline"]
+      ));
+  });
+  // rfc
+  describe("rfc", () => {
+    it("works with 1 argument", () =>
+      assert.equal(processors["rfc"]([1234]), expected["rfc"]["one-argument"]));
+    it("supports additional link text", () =>
+      assert.equal(
+        processors["rfc"]([1234, "my extra stuff"]),
+        expected["rfc"]["additional-link-text"]
+      ));
+    it("supports linking to sections", () =>
+      assert.equal(
+        processors["rfc"]([1950, "my extra stuff", 4]),
+        expected["rfc"]["link-to-section"]
       ));
   });
   // seecompattable

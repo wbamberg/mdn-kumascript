@@ -1,4 +1,3 @@
-import { env } from "process";
 import { render } from "./dist/render.js";
 
 const input = process.argv[2];
