@@ -50,6 +50,10 @@ const expected = {
   "non-standard_inline":
     '<abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using."><span class="visually-hidden">Non-standard</span></abbr>',
   optional_inline: '<span class="badge inline optional">Optional</span>',
+  svgattr:
+    '<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/end"><code>end</code></a>',
+  svgelement:
+    '<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate"><code>&lt;animate&gt;</code></a>',
 };
 
 describe("Macro unit tests", () => {
@@ -219,5 +223,18 @@ describe("Macro unit tests", () => {
   // seecompattable
   describe("seecompattable", () => {
     it("strips macro", () => assert.equal(processors["seecompattable"](), ""));
+  });
+  // svgattr
+  describe("svgattr", () => {
+    it("works with 1 argument", () =>
+      assert.equal(processors["svgattr"](["end"]), expected["svgattr"]));
+  });
+  // svgelement
+  describe("svgelement", () => {
+    it("works with 1 argument", () =>
+      assert.equal(
+        processors["svgelement"](["animate"]),
+        expected["svgelement"]
+      ));
   });
 });

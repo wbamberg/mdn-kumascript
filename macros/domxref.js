@@ -18,8 +18,6 @@ export function executeMacro(args, frontMatter) {
     .replace(/\.prototype\./g, ".")
     .replace(/\./g, "/");
 
-  // Ensure Interfaces are always uppercased in links
-  // (important for red links to create correct new pages)
   slug = slug.charAt(0).toUpperCase() + slug.slice(1);
 
   let fragment = "";

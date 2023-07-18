@@ -7,6 +7,8 @@ import { executeMacro as glossaryProcessor } from "./macros/glossary.js";
 import { executeMacro as htmlelementProcessor } from "./macros/htmlelement.js";
 import { executeMacro as nonStandardInlineProcessor } from "./macros/non-standard_inline.js";
 import { executeMacro as optionalInlineProcessor } from "./macros/optional_inline.js";
+import { executeMacro as svgattrProcessor } from "./macros/svgattr.js";
+import { executeMacro as svgelementProcessor } from "./macros/svgelement.js";
 
 function stripMacro() {
   return "";
@@ -30,4 +32,6 @@ export const processors = {
   optional_inline: optionalInlineProcessor,
   seecompattable: stripMacro,
   specifications: stripMacro,
+  svgattr: svgattrProcessor,
+  svgelement: svgelementProcessor,
 };
