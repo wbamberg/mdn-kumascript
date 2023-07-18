@@ -1,5 +1,6 @@
 import { executeMacro as cssxrefProcessor } from "./macros/cssxref.js";
 import { executeMacro as deprecatedInlineProcessor } from "./macros/deprecated_inline.js";
+import { executeMacro as domxrefProcessor } from "./macros/domxref.js";
 import { executeMacro as embedInteractiveExampleProcessor } from "./macros/embedinteractiveexample.js";
 import { executeMacro as experimentalInlineProcessor } from "./macros/experimental_inline.js";
 import { executeMacro as glossaryProcessor } from "./macros/glossary.js";
@@ -19,6 +20,7 @@ export const processors = {
   csssyntax: stripMacro,
   deprecated_header: stripMacro,
   deprecated_inline: deprecatedInlineProcessor,
+  domxref: domxrefProcessor,
   embedinteractiveexample: embedInteractiveExampleProcessor,
   experimental_inline: experimentalInlineProcessor,
   glossary: glossaryProcessor,

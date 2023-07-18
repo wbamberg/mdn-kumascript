@@ -17,6 +17,20 @@ const expected = {
   },
   deprecated_inline:
     '<abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites."><span class="visually-hidden">Deprecated</span></abbr>',
+  domxref: {
+    "one-argument-interface":
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window"><code>Window</code></a>',
+    "one-argument-interface-member":
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Request/json"><code>Request.json()</code></a>',
+    "corrects-interface-case":
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Document"><code>document</code></a>',
+    "custom-display-name":
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Crypto">My crypto</a>',
+    fragment:
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Event#examples">examples</a>',
+    nocode:
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a>',
+  },
   experimental_inline:
     '<abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future."><span class="visually-hidden">Experimental</span></abbr>',
   glossary: {
@@ -92,6 +106,39 @@ describe("Macro unit tests", () => {
       assert.equal(
         processors["deprecated_inline"](),
         expected["deprecated_inline"]
+      ));
+  });
+  // domxref
+  describe("domxref", () => {
+    it("works with 1 argument", () =>
+      assert.equal(
+        processors["domxref"](["Window"]),
+        expected["domxref"]["one-argument-interface"]
+      ));
+    it("creates links to subpages", () =>
+      assert.equal(
+        processors["domxref"](["Request.json()"]),
+        expected["domxref"]["one-argument-interface-member"]
+      ));
+    it("corrects interface case", () =>
+      assert.equal(
+        processors["domxref"](["document"]),
+        expected["domxref"]["corrects-interface-case"]
+      ));
+    it("supports custom display names", () =>
+      assert.equal(
+        processors["domxref"](["Crypto", "My crypto", "", "nocode"]),
+        expected["domxref"]["custom-display-name"]
+      ));
+    it("supports fragments", () =>
+      assert.equal(
+        processors["domxref"](["Event", "examples", "examples", "nocode"]),
+        expected["domxref"]["fragment"]
+      ));
+    it("can suppress code formatting", () =>
+      assert.equal(
+        processors["domxref"](["Element", "", "", "nocode"]),
+        expected["domxref"]["nocode"]
       ));
   });
   // embedinteractiveexample
