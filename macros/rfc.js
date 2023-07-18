@@ -4,7 +4,7 @@
   1 - (Optional) Additional link text, to be used to add a name for the RFC
   2 - (Optional) Section number within the RTC to link to
   */
-export function executeMacro(args, frontMatter) {
+export function renderMacro(args, frontMatter) {
   const baseURL = "https://datatracker.ietf.org/doc/html/rfc";
 
   let additionalLinkText = "";

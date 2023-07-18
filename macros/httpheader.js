@@ -6,7 +6,7 @@
   3 - If set, do not put the link text in code
  */
 
-export function executeMacro(args, frontMatter) {
+export function renderMacro(args, frontMatter) {
   const baseURL = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers";
 
   const header = args[0];

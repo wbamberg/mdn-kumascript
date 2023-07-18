@@ -3,7 +3,7 @@
   0 - Term name
   1 - Text to display (optional)
   */
-export function executeMacro(args, frontMatter) {
+export function renderMacro(args, frontMatter) {
   const baseURL = "https://developer.mozilla.org/en-US/docs/Glossary";
 
   const displayName = args[1] || args[0];

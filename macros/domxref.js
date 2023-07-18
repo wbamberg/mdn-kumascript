@@ -6,7 +6,7 @@
   3 - If set, do not put the domxref text in code
  */
 
-export function executeMacro(args, frontMatter) {
+export function renderMacro(args, frontMatter) {
   const baseURL = "https://developer.mozilla.org/en-US/docs/Web/API";
 
   let slug = args[0];

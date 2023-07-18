@@ -2,7 +2,7 @@
   Parameters:
   0 - Element name
   */
-export function executeMacro(args, frontMatter) {
+export function renderMacro(args, frontMatter) {
   const baseURL = "https://developer.mozilla.org/en-US/docs/Web/SVG/Element";
   const slug = args[0];
   const displayName = `&lt;${slug}&gt;`;

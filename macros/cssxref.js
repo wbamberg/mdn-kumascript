@@ -1,4 +1,4 @@
-export function executeMacro(args, frontMatter) {
+export function renderMacro(args, frontMatter) {
   const baseURL = "https://developer.mozilla.org/en-US/docs/Web/CSS/";
 
   // remove <> for data types

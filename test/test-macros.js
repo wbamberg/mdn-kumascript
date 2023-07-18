@@ -1,6 +1,6 @@
 import assert from "assert";
 
-import { processors } from "../processors.js";
+import { renderers } from "../renderers.js";
 
 const expected = {
   cssxref: {
@@ -77,41 +77,41 @@ const expected = {
 describe("Macro unit tests", () => {
   // cssref
   describe("cssref", () => {
-    it("strips macro", () => assert.equal(processors["cssref"](), ""));
+    it("strips macro", () => assert.equal(renderers["cssref"](), ""));
   });
   // cssxref
   describe("cssxref", () => {
     it("special-cases <color> type", () =>
       assert.equal(
-        processors["cssxref"](["&lt;color&gt;"], {
+        renderers["cssxref"](["&lt;color&gt;"], {
           "page-type": "css-type",
         }),
         expected["cssxref"]["special-case-color"]
       ));
     it("adds brackets to functions", () =>
       assert.equal(
-        processors["cssxref"](["max"], {
+        renderers["cssxref"](["max"], {
           "page-type": "css-function",
         }),
         expected["cssxref"]["add-brackets-to-function"]
       ));
     it("adds brackets to data types", () =>
       assert.equal(
-        processors["cssxref"](["angle"], {
+        renderers["cssxref"](["angle"], {
           "page-type": "css-type",
         }),
         expected["cssxref"]["add-brackets-to-data-type"]
       ));
     it("supports custom display names", () =>
       assert.equal(
-        processors["cssxref"](["color", "this color"], {
+        renderers["cssxref"](["color", "this color"], {
           "page-type": "css-property",
         }),
         expected["cssxref"]["custom-display-name"]
       ));
     it("supports fragments", () =>
       assert.equal(
-        processors["cssxref"](["border", "", "#syntax"], {
+        renderers["cssxref"](["border", "", "#syntax"], {
           "page-type": "css-property",
         }),
         expected["cssxref"]["fragment"]
@@ -120,13 +120,13 @@ describe("Macro unit tests", () => {
   // deprecated_header
   describe("deprecated_header", () => {
     it("strips macro", () =>
-      assert.equal(processors["deprecated_header"](), ""));
+      assert.equal(renderers["deprecated_header"](), ""));
   });
   // deprecated_inline
   describe("deprecated_inline", () => {
     it("generates markup", () =>
       assert.equal(
-        processors["deprecated_inline"](),
+        renderers["deprecated_inline"](),
         expected["deprecated_inline"]
       ));
   });
@@ -134,32 +134,32 @@ describe("Macro unit tests", () => {
   describe("domxref", () => {
     it("works with 1 argument", () =>
       assert.equal(
-        processors["domxref"](["Window"]),
+        renderers["domxref"](["Window"]),
         expected["domxref"]["one-argument-interface"]
       ));
     it("creates links to subpages", () =>
       assert.equal(
-        processors["domxref"](["Request.json()"]),
+        renderers["domxref"](["Request.json()"]),
         expected["domxref"]["one-argument-interface-member"]
       ));
     it("corrects interface case", () =>
       assert.equal(
-        processors["domxref"](["document"]),
+        renderers["domxref"](["document"]),
         expected["domxref"]["corrects-interface-case"]
       ));
     it("supports custom display names", () =>
       assert.equal(
-        processors["domxref"](["Crypto", "My crypto", "", "nocode"]),
+        renderers["domxref"](["Crypto", "My crypto", "", "nocode"]),
         expected["domxref"]["custom-display-name"]
       ));
     it("supports fragments", () =>
       assert.equal(
-        processors["domxref"](["Event", "examples", "examples", "nocode"]),
+        renderers["domxref"](["Event", "examples", "examples", "nocode"]),
         expected["domxref"]["fragment"]
       ));
     it("can suppress code formatting", () =>
       assert.equal(
-        processors["domxref"](["Element", "", "", "nocode"]),
+        renderers["domxref"](["Element", "", "", "nocode"]),
         expected["domxref"]["nocode"]
       ));
   });
@@ -167,7 +167,7 @@ describe("Macro unit tests", () => {
   describe("embedinteractiveexample", () => {
     it("strips macro, appends to front matter", () => {
       const frontMatter = {};
-      const result = processors["embedinteractiveexample"](
+      const result = renderers["embedinteractiveexample"](
         ["thing"],
         frontMatter
       );
@@ -182,7 +182,7 @@ describe("Macro unit tests", () => {
   describe("experimental_inline", () => {
     it("generates markup", () =>
       assert.equal(
-        processors["experimental_inline"](),
+        renderers["experimental_inline"](),
         expected["experimental_inline"]
       ));
   });
@@ -190,12 +190,12 @@ describe("Macro unit tests", () => {
   describe("glossary", () => {
     it("works with 1 argument", () =>
       assert.equal(
-        processors["glossary"](["Fingerprinting"]),
+        renderers["glossary"](["Fingerprinting"]),
         expected["glossary"]["one-argument"]
       ));
     it("supports custom display names", () =>
       assert.equal(
-        processors["glossary"](["Fingerprinting", "another name"]),
+        renderers["glossary"](["Fingerprinting", "another name"]),
         expected["glossary"]["custom-display-name"]
       ));
   });
@@ -203,17 +203,17 @@ describe("Macro unit tests", () => {
   describe("htmlelement", () => {
     it("works with 1 argument", () =>
       assert.equal(
-        processors["htmlelement"](["div"]),
+        renderers["htmlelement"](["div"]),
         expected["htmlelement"]["one-argument"]
       ));
     it("supports custom display names", () =>
       assert.equal(
-        processors["htmlelement"](["span", "The span element"]),
+        renderers["htmlelement"](["span", "The span element"]),
         expected["htmlelement"]["custom-display-name"]
       ));
     it("supports fragments", () =>
       assert.equal(
-        processors["htmlelement"](["summary", "", "#examples"]),
+        renderers["htmlelement"](["summary", "", "#examples"]),
         expected["htmlelement"]["fragment"]
       ));
   });
@@ -221,35 +221,35 @@ describe("Macro unit tests", () => {
   describe("httpheader", () => {
     it("works with 1 argument", () =>
       assert.equal(
-        processors["httpheader"](["RTT"]),
+        renderers["httpheader"](["RTT"]),
         expected["httpheader"]["one-argument"]
       ));
     it("supports custom display names", () =>
       assert.equal(
-        processors["httpheader"](["RTT", "My text"]),
+        renderers["httpheader"](["RTT", "My text"]),
         expected["httpheader"]["custom-display-name"]
       ));
     it("supports fragments", () =>
       assert.equal(
-        processors["httpheader"](["RTT", "My text", "examples"]),
+        renderers["httpheader"](["RTT", "My text", "examples"]),
         expected["httpheader"]["fragment"]
       ));
     it("can suppress code formatting", () =>
       assert.equal(
-        processors["httpheader"](["RTT", "", "", "nocode"]),
+        renderers["httpheader"](["RTT", "", "", "nocode"]),
         expected["httpheader"]["nocode"]
       ));
   });
   // non-standard_header
   describe("non-standard_header", () => {
     it("strips macro", () =>
-      assert.equal(processors["non-standard_header"](), ""));
+      assert.equal(renderers["non-standard_header"](), ""));
   });
   // non-standard_inline
   describe("non-standard_inline", () => {
     it("generates markup", () =>
       assert.equal(
-        processors["non-standard_inline"](),
+        renderers["non-standard_inline"](),
         expected["non-standard_inline"]
       ));
   });
@@ -257,39 +257,39 @@ describe("Macro unit tests", () => {
   describe("optional_inline", () => {
     it("generates markup", () =>
       assert.equal(
-        processors["optional_inline"](),
+        renderers["optional_inline"](),
         expected["optional_inline"]
       ));
   });
   // rfc
   describe("rfc", () => {
     it("works with 1 argument", () =>
-      assert.equal(processors["rfc"]([1234]), expected["rfc"]["one-argument"]));
+      assert.equal(renderers["rfc"]([1234]), expected["rfc"]["one-argument"]));
     it("supports additional link text", () =>
       assert.equal(
-        processors["rfc"]([1234, "my extra stuff"]),
+        renderers["rfc"]([1234, "my extra stuff"]),
         expected["rfc"]["additional-link-text"]
       ));
     it("supports linking to sections", () =>
       assert.equal(
-        processors["rfc"]([1950, "my extra stuff", 4]),
+        renderers["rfc"]([1950, "my extra stuff", 4]),
         expected["rfc"]["link-to-section"]
       ));
   });
   // seecompattable
   describe("seecompattable", () => {
-    it("strips macro", () => assert.equal(processors["seecompattable"](), ""));
+    it("strips macro", () => assert.equal(renderers["seecompattable"](), ""));
   });
   // svgattr
   describe("svgattr", () => {
     it("works with 1 argument", () =>
-      assert.equal(processors["svgattr"](["end"]), expected["svgattr"]));
+      assert.equal(renderers["svgattr"](["end"]), expected["svgattr"]));
   });
   // svgelement
   describe("svgelement", () => {
     it("works with 1 argument", () =>
       assert.equal(
-        processors["svgelement"](["animate"]),
+        renderers["svgelement"](["animate"]),
         expected["svgelement"]
       ));
   });

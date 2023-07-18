@@ -24,7 +24,7 @@
  * template (this is used by the /macros/ endpoint in server.js)
  */
 
-import { processors } from "../processors.js";
+import { renderers } from "../renderers.js";
 
 export default class Templates {
   async render(name, env?: any) {
@@ -32,7 +32,7 @@ export default class Templates {
     // uppercase letters to lowercase.
     name = name.replace(/:/g, "-").toLowerCase();
     try {
-      const rendered = processors[name](env.args, env.frontMatter);
+      const rendered = renderers[name](env.args, env.frontMatter);
       return rendered.trim();
     } catch (error) {
       console.error(`The ${name} macro failed to render.`, error);
