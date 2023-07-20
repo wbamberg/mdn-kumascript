@@ -1,13 +1,13 @@
 {
   "name": "mdn-kumascript",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/render.js",
+  "types": "dist/render.d.ts",
   "scripts": {
     "build": "tsc",
     "prepublish": "npm run build && cp -a lib/parser.js dist/parser.js",
-    "process": "npm run prepublish && node ./cli.js",
+    "render": "npm run prepublish && node ./cli.js",
     "test": "npm run prepublish && mocha -- test/**/*.js"
   },
   "devDependencies": {

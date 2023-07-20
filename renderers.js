@@ -26,6 +26,7 @@ export const renderers = {
   deprecated_inline: deprecatedinlineRenderer,
   domxref: domxrefRenderer,
   embedinteractiveexample: embedinteractiveexampleRenderer,
+  embedlivesample: stripMacro, // obviously this needs to be implemented...
   experimental_inline: experimentalinlineRenderer,
   glossary: glossaryRenderer,
   htmlelement: htmlelementRenderer,
