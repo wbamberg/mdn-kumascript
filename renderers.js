@@ -12,6 +12,9 @@ import { renderMacro as optionalinlineRenderer } from "./macros/optional_inline.
 import { renderMacro as rfcRenderer } from "./macros/rfc.js";
 import { renderMacro as svgattrRenderer } from "./macros/svgattr.js";
 import { renderMacro as svgelementRenderer } from "./macros/svgelement.js";
+import { renderMacro as xrefcsscomputedRenderer } from "./macros/xref_csscomputed.js";
+import { renderMacro as xrefcssinheritedRenderer } from "./macros/xref_cssinherited.js";
+import { renderMacro as xrefcssinitialRenderer } from "./macros/xref_cssinitial.js";
 
 function stripMacro() {
   return "";
@@ -41,4 +44,7 @@ export const renderers = {
   specifications: stripMacro,
   svgattr: svgattrRenderer,
   svgelement: svgelementRenderer,
+  xref_csscomputed: xrefcsscomputedRenderer,
+  xref_cssinherited: xrefcssinheritedRenderer,
+  xref_cssinitial: xrefcssinitialRenderer,
 };

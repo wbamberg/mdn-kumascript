@@ -80,6 +80,12 @@ const expected = {
     '<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/end"><code>end</code></a>',
   svgelement:
     '<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate"><code>&lt;animate&gt;</code></a>',
+  xref_csscomputed:
+    '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/computed_value">Computed value</a>',
+  xref_cssinherited:
+    '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance">Inherited</a>',
+  xref_cssinitial:
+    '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/initial_value">Initial value</a>',
 };
 
 describe("Macro unit tests", () => {
@@ -322,6 +328,30 @@ describe("Macro unit tests", () => {
       assert.equal(
         renderers["svgelement"](["animate"]),
         expected["svgelement"]
+      ));
+  });
+  // xref_csscomputed
+  describe("xref_csscomputed", () => {
+    it("renders the link", () =>
+      assert.equal(
+        renderers["xref_csscomputed"](),
+        expected["xref_csscomputed"]
+      ));
+  });
+  // xref_cssinherited
+  describe("xref_cssinherited", () => {
+    it("renders the link", () =>
+      assert.equal(
+        renderers["xref_cssinherited"](),
+        expected["xref_cssinherited"]
+      ));
+  });
+  // xref_csscomputed
+  describe("xref_cssinitial", () => {
+    it("renders the link", () =>
+      assert.equal(
+        renderers["xref_cssinitial"](),
+        expected["xref_cssinitial"]
       ));
   });
 });
