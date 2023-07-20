@@ -31,6 +31,14 @@ const expected = {
     nocode:
       '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a>',
   },
+  embedghlivesample: {
+    "one-argument": '<iframe src="https://mdn.github.io/my-example"></iframe>',
+    width:
+      '<iframe width="100" src="https://mdn.github.io/my-example"></iframe>',
+    height:
+      '<iframe height="200" src="https://mdn.github.io/my-example"></iframe>',
+    "width-height": `<iframe width="100" height="200" src="https://mdn.github.io/my-example"></iframe>`,
+  },
   experimental_inline:
     '<abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future."><span class="visually-hidden">Experimental</span></abbr>',
   glossary: {
@@ -161,6 +169,29 @@ describe("Macro unit tests", () => {
       assert.equal(
         renderers["domxref"](["Element", "", "", "nocode"]),
         expected["domxref"]["nocode"]
+      ));
+  });
+  // embedghlivesample
+  describe("embedghlivesample", () => {
+    it("works with 1 argument", () =>
+      assert.equal(
+        renderers["embedghlivesample"](["my-example"]),
+        expected["embedghlivesample"]["one-argument"]
+      ));
+    it("supports setting width only", () =>
+      assert.equal(
+        renderers["embedghlivesample"](["my-example", 100]),
+        expected["embedghlivesample"]["width"]
+      ));
+    it("supports setting height only", () =>
+      assert.equal(
+        renderers["embedghlivesample"](["my-example", "", 200]),
+        expected["embedghlivesample"]["height"]
+      ));
+    it("supports setting width and height", () =>
+      assert.equal(
+        renderers["embedghlivesample"](["my-example", 100, 200]),
+        expected["embedghlivesample"]["width-height"]
       ));
   });
   // embedinteractiveexample

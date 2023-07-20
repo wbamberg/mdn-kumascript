@@ -2,6 +2,7 @@ import { renderMacro as cssxrefRenderer } from "./macros/cssxref.js";
 import { renderMacro as deprecatedinlineRenderer } from "./macros/deprecated_inline.js";
 import { renderMacro as domxrefRenderer } from "./macros/domxref.js";
 import { renderMacro as embedinteractiveexampleRenderer } from "./macros/embedinteractiveexample.js";
+import { renderMacro as embedghlivesampleRenderer } from "./macros/embedghlivesample.js";
 import { renderMacro as experimentalinlineRenderer } from "./macros/experimental_inline.js";
 import { renderMacro as glossaryRenderer } from "./macros/glossary.js";
 import { renderMacro as htmlelementRenderer } from "./macros/htmlelement.js";
@@ -26,6 +27,7 @@ export const renderers = {
   deprecated_inline: deprecatedinlineRenderer,
   domxref: domxrefRenderer,
   embedinteractiveexample: embedinteractiveexampleRenderer,
+  embedghlivesample: embedghlivesampleRenderer,
   embedlivesample: stripMacro, // obviously this needs to be implemented...
   experimental_inline: experimentalinlineRenderer,
   glossary: glossaryRenderer,
