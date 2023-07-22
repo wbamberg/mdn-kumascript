@@ -4,7 +4,7 @@
   1 - Text to display (optional)
   */
 export function renderMacro(args, frontMatter) {
-  const baseURL = "https://developer.mozilla.org/en-US/docs/Glossary";
+  const baseURL = "/Glossary";
 
   const displayName = args[1] || args[0];
   const subPath = args[0].replace(/\s+/g, "_");

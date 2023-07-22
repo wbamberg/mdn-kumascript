@@ -7,7 +7,7 @@
  */
 
 export function renderMacro(args, frontMatter) {
-  const baseURL = "https://developer.mozilla.org/en-US/docs/Web/API";
+  const baseURL = "/Web/API";
 
   let slug = args[0];
   let displayName = args[1] || args[0];

@@ -1,5 +1,5 @@
 export function renderMacro(args, frontMatter) {
-  const baseURL = "https://developer.mozilla.org/en-US/docs/Web/CSS/";
+  const baseURL = "/Web/CSS/";
 
   // remove <> for data types
   let slug = args[0].replace(/&lt;(.*)&gt;/g, "$1");

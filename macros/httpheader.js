@@ -7,7 +7,7 @@
  */
 
 export function renderMacro(args, frontMatter) {
-  const baseURL = "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers";
+  const baseURL = "/Web/HTTP/Headers";
 
   const header = args[0];
   let linkText = args[1] || args[0];

@@ -5,7 +5,7 @@
   2 - Anchor within the page (optional)
   */
 export function renderMacro(args, frontMatter) {
-  const baseURL = "https://developer.mozilla.org/en-US/docs/Web/HTML/Element";
+  const baseURL = "/Web/HTML/Element";
   const slug = args[0];
   const fragment = args[2] || "";
   let displayName = args[1] || args[0];
