@@ -6,7 +6,7 @@
   3 - If set, do not put the link text in code
  */
 
-export function renderMacro(args, frontMatter) {
+export function renderMacro(args, env) {
   const baseURL = "/Web/HTTP/Headers";
 
   const header = args[0];

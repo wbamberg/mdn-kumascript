@@ -1,3 +1,3 @@
-export function renderMacro(args, frontMatter) {
+export function renderMacro(args, env) {
   return `<span class="badge inline optional">Optional</span>`;
 }

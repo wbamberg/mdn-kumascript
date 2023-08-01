@@ -1,4 +1,4 @@
-export function renderMacro(args, frontMatter) {
+export function renderMacro(args, env) {
   const baseURL = "/Web/CSS/";
 
   // remove <> for data types
@@ -26,14 +26,14 @@ export function renderMacro(args, frontMatter) {
 
     // note that this is completely wrong!!
     if (
-      frontMatter["page-type"] === "css-function" &&
+      env.frontMatter["page-type"] === "css-function" &&
       !displayName.endsWith("()")
     ) {
       displayName += "()";
     }
     // Enclose CSS data types in arrow brackets
     if (
-      frontMatter["page-type"] === "css-type" &&
+      env.frontMatter["page-type"] === "css-type" &&
       !/^&lt;.+&gt;$/.test(displayName)
     ) {
       displayName = "&lt;" + displayName + "&gt;";

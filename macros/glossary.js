@@ -3,7 +3,7 @@
   0 - Term name
   1 - Text to display (optional)
   */
-export function renderMacro(args, frontMatter) {
+export function renderMacro(args, env) {
   const baseURL = "/Glossary";
 
   const displayName = args[1] || args[0];

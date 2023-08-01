@@ -159,10 +159,11 @@ export async function render(
       }
       // Now start rendering this macro.
       try {
-        currentResult.output = await templates.render(macroName, {
-          frontMatter,
-          args: token.args,
-        });
+        currentResult.output = await templates.render(
+          macroName,
+          token.args,
+          pageEnvironment
+        );
       } catch (e) {
         let macroError;
         if (

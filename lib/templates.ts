@@ -12,12 +12,12 @@
 import { renderers } from "../renderers.js";
 
 export default class Templates {
-  async render(name, env?: any) {
+  async render(name, args: [any], env: any) {
     // Normalize the macro name by converting colons to hyphens and
     // uppercase letters to lowercase.
     name = name.replace(/:/g, "-").toLowerCase();
     try {
-      const rendered = renderers[name](env.args, env.frontMatter);
+      const rendered = renderers[name](args, env);
       return rendered.trim();
     } catch (error) {
       console.error(`The ${name} macro failed to render.`, error);

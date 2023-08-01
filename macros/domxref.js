@@ -6,7 +6,7 @@
   3 - If set, do not put the domxref text in code
  */
 
-export function renderMacro(args, frontMatter) {
+export function renderMacro(args, env) {
   const baseURL = "/Web/API";
 
   let slug = args[0];

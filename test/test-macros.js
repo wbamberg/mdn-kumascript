@@ -86,35 +86,45 @@ describe("Macro unit tests", () => {
     it("special-cases <color> type", () =>
       assert.equal(
         renderers["cssxref"](["&lt;color&gt;"], {
-          "page-type": "css-type",
+          frontMatter: {
+            "page-type": "css-type",
+          },
         }),
         expected["cssxref"]["special-case-color"]
       ));
     it("adds brackets to functions", () =>
       assert.equal(
         renderers["cssxref"](["max"], {
-          "page-type": "css-function",
+          frontMatter: {
+            "page-type": "css-function",
+          },
         }),
         expected["cssxref"]["add-brackets-to-function"]
       ));
     it("adds brackets to data types", () =>
       assert.equal(
         renderers["cssxref"](["angle"], {
-          "page-type": "css-type",
+          frontMatter: {
+            "page-type": "css-type",
+          },
         }),
         expected["cssxref"]["add-brackets-to-data-type"]
       ));
     it("supports custom display names", () =>
       assert.equal(
         renderers["cssxref"](["color", "this color"], {
-          "page-type": "css-property",
+          frontMatter: {
+            "page-type": "css-property",
+          },
         }),
         expected["cssxref"]["custom-display-name"]
       ));
     it("supports fragments", () =>
       assert.equal(
         renderers["cssxref"](["border", "", "#syntax"], {
-          "page-type": "css-property",
+          frontMatter: {
+            "page-type": "css-property",
+          },
         }),
         expected["cssxref"]["fragment"]
       ));
@@ -191,14 +201,13 @@ describe("Macro unit tests", () => {
   // embedinteractiveexample
   describe("embedinteractiveexample", () => {
     it("strips macro, appends to front matter", () => {
-      const frontMatter = {};
-      const result = renderers["embedinteractiveexample"](
-        ["thing"],
-        frontMatter
-      );
+      const env = {
+        frontMatter: {},
+      };
+      const result = renderers["embedinteractiveexample"](["thing"], env);
       assert.equal(result, "");
       assert.equal(
-        frontMatter["interactive-example"],
+        env.frontMatter["interactive-example"],
         "https://interactive-examples.mdn.mozilla.net/thing"
       );
     });

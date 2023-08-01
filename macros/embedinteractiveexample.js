@@ -1,5 +1,5 @@
-export function renderMacro(args, frontMatter) {
+export function renderMacro(args, env) {
   const url = `https://interactive-examples.mdn.mozilla.net/${args[0]}`;
-  frontMatter["interactive-example"] = url;
+  env.frontMatter["interactive-example"] = url;
   return "";
 }

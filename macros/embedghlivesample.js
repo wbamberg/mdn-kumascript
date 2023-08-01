@@ -5,7 +5,7 @@
   2 - The height of the iframe (optional)
  */
 
-export function renderMacro(args, frontMatter) {
+export function renderMacro(args, env) {
   const url = "https://mdn.github.io/" + args[0];
 
   const width = args[1] ? `width="${args[1]}" ` : "";
