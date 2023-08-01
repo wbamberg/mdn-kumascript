@@ -60,9 +60,7 @@ The engine is ported from https://github.com/mdn/yari. In particular:
 In this package, individual macros are implements as separate modules under the /macros directory. Each module must export an async function `executeMacro()`, which takes two arguments:
 
 - `args`: an array containing the arguments that were passed to the macro in the source invocation
-- `env`: an object containing the page front matter
-
-It's quite likely that some macros will eventually need more environment than this, so we will probably extend this
+- `env`: an object containing a single property `frontMatter`, which is an object containing the page front matter (It's quite likely that some macros will eventually need more environment than this, so we will probably extend this `env` object).
 
 The `executeMacro()` function returns a `Promise` that resolves to the expansion of the macro in the source. Macros may also modify the `frontMatter` argument: if they do, these modifications will appear in the object returned by the top level `render()` function.
 
