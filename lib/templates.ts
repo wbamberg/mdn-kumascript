@@ -1,27 +1,12 @@
 /**
- * The Templates class is a thin wrapper around the EJS templating system.
+ * This file contains a greatly modified version of the templates.ts
+ * from https://github.com/mdn/yari/blob/main/kumascript/src/templates.ts.
  *
- * Given a directory in the local filesystem, it finds all .ejs (and
- * also .js and .json) files under that directory and assumes that
- * they are all valid EJS templates. It uses the lowercase filename,
- * with path and extension removed as a unique identifier for the
- * macro. (The constructor raises an error if macro names are not
- * unique within the directory.)
- *
- * The render() method takes the name of a template and an execution
- * context object and renders the named template in that context. (See
- * the getExecutionContext() method of the Environment object to obtain
- * an execution context.) render() is declared async, so it returns
- * Promise<string> rather than returning a string directly, which
- * supports templates that are themselves async.
- *
- * render() relies on EJS's built-in caching and file-loading
- * capabilities so no template should ever need to be loaded or
- * compiled more than once.
- *
- * The getTemplateMap() function returns a Map object that maps
- * template names to the name of the file that implements the
- * template (this is used by the /macros/ endpoint in server.js)
+ * It exports a single function `render()`, which takes as arguments:
+ * - `name`: the name of the macro to execute
+ * - `env`: an object containing two properties:
+ *   - `args`: an array of the arguments passed to the macro in the source
+ *   - `frontMatter`: the page front matter
  */
 
 import { renderers } from "../renderers.js";

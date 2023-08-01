@@ -1,5 +1,9 @@
 /**
- * Error classes that can be thrown when trying to render the macros on a page.
+ * This file contains a lightly modified version of the errors.ts
+ * from https://github.com/mdn/yari/blob/main/kumascript/src/errors.ts.
+ *
+ * The only modification is to remove errors that don't make sense outside
+ * the context of the MDN website, like macros pointing to redirected pages.
  */
 
 /**

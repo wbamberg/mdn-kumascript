@@ -1,42 +1,27 @@
 /**
- * This file defines a render() function that takes as input a string
- * of text containing embedded KumaScript macros and asynchronously
- * returns a string in which the embedded macros have been
- * expanded. The render() function itself does not include any
- * asynchronous code, but macros may be asynchronous (they can make
- * HTTP requests, and use `await` for example), so the render() method
- * is declared `async`.
+ * This file contains a modified version of the render.ts from
+ * https://github.com/mdn/yari/blob/main/kumascript/src/render.ts.
  *
- * Macros are embedded in source documents within pairs of curly
- * braces {{...}}. The Parser object of parser.js is used to extract
- * macro invocations (which can include arguments) and strings of
- * constant text from the source document.
+ * It exports the `render()` function, that takes as input:
+ * - `source`: a string containing KumaScript macro calls enclosed in
+ * double curly brackets, like {{macrocall}}
+ * - `pageEnvironment`: an object containing data relating to the page
+ * that contains `source`. This object contains a single property
+ * `frontMatter`, which is an object containing the front matter for
+ * the page.
  *
- * A Templates object (which represents a directory of EJS templates) is
- * used to render individual macros.
+ * The `render()` function is declared `async` because although the
+ * function itself is synchronous, individual macros may be asynchronous.
  *
- * When a macro is rendered, it takes a context object that defines
- * the values available to the macro. These values come from three
- * sources:
+ * It returns an object containing three properties:
+ * - `markup`: the markup which results from rendering all macros in `source`
+ * - `frontMatter`: the front matter passed in, with any modifications made
+ * by the macros that executed
+ * - `errors`: an array of all nonfatal errors encountered
  *
- *   1) The macro API defined by the Environment class.
- *
- *   2) A context object passed to render(). This object defines
- *      values such as env.locale and env.title that are specific to
- *      the page being rendered.
- *
- *   3) An object that represents the arguments (if any) for a single
- *      macro invocation within a page. These are values that appear
- *      in the source document as part of the macro, and are bound to
- *      names $0, $1, etc.
- *
- * To render an HTML document that includes macro invocations, call
- * the render() function passing:
- *
- *   - the text of the page to be rendered
- *
- *   - the environment object that defines per-page values such as
- *     locale, title and slug.
+ * It caches the results of macros, so it can reuse a macro result if the
+ * source contains more than one identical macro invocation (except for
+ * context-sensitive macros like embedlivesample).
  */
 import * as Parser from "./parser.js";
 import Templates from "./templates.js";
@@ -58,7 +43,7 @@ export function normalizeMacroName(name) {
 export async function render(
   source: string,
   pageEnvironment
-): Promise<[string, MacroExecutionError[]]> {
+): Promise<{ markup: string; frontMatter: {}; errors: MacroExecutionError[] }> {
   let tokens;
   try {
     tokens = Parser.parse(source);
@@ -112,6 +97,8 @@ export async function render(
     currentResult.errors.nonFatal.push(macroError);
     return macroError;
   }
+
+  const frontMatter = pageEnvironment.frontMatter;
 
   // Loop through the tokens
   for (const token of tokens) {
@@ -173,7 +160,7 @@ export async function render(
       // Now start rendering this macro.
       try {
         currentResult.output = await templates.render(macroName, {
-          frontMatter: pageEnvironment.frontMatter,
+          frontMatter,
           args: token.args,
         });
       } catch (e) {
@@ -209,5 +196,9 @@ export async function render(
       }
     }
   }
-  return [output, errors];
+  return {
+    markup: output,
+    frontMatter,
+    errors,
+  };
 }

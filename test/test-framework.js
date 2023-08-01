@@ -15,12 +15,12 @@ describe("Macro framework tests", () => {
   try {
     it("updates markup", async () => {
       const output = await render(input, environment);
-      assert.equal(output[0], expectedMarkup);
+      assert.equal(output.markup, expectedMarkup);
     });
     it("updates front matter", async () => {
-      await render(input, environment);
+      const output = await render(input, environment);
       assert.equal(
-        environment.frontMatter["interactive-example"],
+        output.frontMatter["interactive-example"],
         expectedFrontMatter["interactive-example"]
       );
     });
