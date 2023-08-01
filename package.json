@@ -1,6 +1,6 @@
 {
   "name": "mdn-kumascript",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "type": "module",
   "main": "dist/render.js",
   "types": "dist/render.d.ts",
