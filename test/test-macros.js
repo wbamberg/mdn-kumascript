@@ -5,26 +5,31 @@ import { renderers } from "../renderers.js";
 const expected = {
   cssxref: {
     "special-case-color":
-      '<a href="/Web/CSS/color_value"><code>&lt;color&gt;</code></a>',
-    "add-brackets-to-function": '<a href="/Web/CSS/max"><code>max()</code></a>',
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value"><code>&lt;color&gt;</code></a>',
+    "add-brackets-to-function":
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/max"><code>max()</code></a>',
     "add-brackets-to-data-type":
-      '<a href="/Web/CSS/angle"><code>&lt;angle&gt;</code></a>',
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/angle"><code>&lt;angle&gt;</code></a>',
     "custom-display-name":
-      '<a href="/Web/CSS/color"><code>this color</code></a>',
-    fragment: '<a href="/Web/CSS/border#syntax"><code>border</code></a>',
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color"><code>this color</code></a>',
+    fragment:
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border#syntax"><code>border</code></a>',
   },
   deprecated_inline:
     '<abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites."><span class="visually-hidden">Deprecated</span></abbr>',
   domxref: {
     "one-argument-interface":
-      '<a href="/Web/API/Window"><code>Window</code></a>',
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window"><code>Window</code></a>',
     "one-argument-interface-member":
-      '<a href="/Web/API/Request/json"><code>Request.json()</code></a>',
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Request/json"><code>Request.json()</code></a>',
     "corrects-interface-case":
-      '<a href="/Web/API/Document"><code>document</code></a>',
-    "custom-display-name": '<a href="/Web/API/Crypto">My crypto</a>',
-    fragment: '<a href="/Web/API/Event#examples">examples</a>',
-    nocode: '<a href="/Web/API/Element">Element</a>',
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Document"><code>document</code></a>',
+    "custom-display-name":
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Crypto">My crypto</a>',
+    fragment:
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Event#examples">examples</a>',
+    nocode:
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a>',
   },
   embedghlivesample: {
     "one-argument": '<iframe src="https://mdn.github.io/my-example"></iframe>',
@@ -37,25 +42,28 @@ const expected = {
   experimental_inline:
     '<abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future."><span class="visually-hidden">Experimental</span></abbr>',
   glossary: {
-    "one-argument": '<a href="/Glossary/Fingerprinting">Fingerprinting</a>',
+    "one-argument":
+      '<a href="https://developer.mozilla.org/en-US/docs/Glossary/Fingerprinting">Fingerprinting</a>',
     "custom-display-name":
-      '<a href="/Glossary/Fingerprinting">another name</a>',
+      '<a href="https://developer.mozilla.org/en-US/docs/Glossary/Fingerprinting">another name</a>',
   },
   htmlelement: {
     "one-argument":
-      '<a href="/Web/HTML/Element/div"><code>&lt;div&gt;</code></a>',
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a>',
     "custom-display-name":
-      '<a href="/Web/HTML/Element/span">The span element</a>',
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span">The span element</a>',
     fragment:
-      '<a href="/Web/HTML/Element/summary#examples"><code>&lt;summary&gt;</code></a>',
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary#examples"><code>&lt;summary&gt;</code></a>',
   },
   httpheader: {
-    "one-argument": '<a href="/Web/HTTP/Headers/RTT"><code>RTT</code></a>',
+    "one-argument":
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/RTT"><code>RTT</code></a>',
     "custom-display-name":
-      '<a href="/Web/HTTP/Headers/RTT"><code>My text</code></a>',
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/RTT"><code>My text</code></a>',
     fragment:
-      '<a href="/Web/HTTP/Headers/RTT#examples"><code>My text.examples</code></a>',
-    nocode: '<a href="/Web/HTTP/Headers/RTT">RTT</a>',
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/RTT#examples"><code>My text.examples</code></a>',
+    nocode:
+      '<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/RTT">RTT</a>',
   },
   "non-standard_inline":
     '<abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using."><span class="visually-hidden">Non-standard</span></abbr>',
@@ -68,12 +76,16 @@ const expected = {
     "link-to-section":
       '<a href="https://datatracker.ietf.org/doc/html/rfc1950#section-4">RFC 1950, section 4: my extra stuff</a>',
   },
-  svgattr: '<a href="/Web/SVG/Attribute/end"><code>end</code></a>',
+  svgattr:
+    '<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/end"><code>end</code></a>',
   svgelement:
-    '<a href="/Web/SVG/Element/animate"><code>&lt;animate&gt;</code></a>',
-  xref_csscomputed: '<a href="/Web/CSS/computed_value">Computed value</a>',
-  xref_cssinherited: '<a href="/Web/CSS/inheritance">Inherited</a>',
-  xref_cssinitial: '<a href="/Web/CSS/initial_value">Initial value</a>',
+    '<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/animate"><code>&lt;animate&gt;</code></a>',
+  xref_csscomputed:
+    '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/computed_value">Computed value</a>',
+  xref_cssinherited:
+    '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance">Inherited</a>',
+  xref_cssinitial:
+    '<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/initial_value">Initial value</a>',
 };
 
 describe("Macro unit tests", () => {
